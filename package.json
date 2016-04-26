@@ -1,0 +1,78 @@
+{
+  "name": "angular-templatecache-extract",
+  "version": "1.0.0",
+  "description": "Extract angular's templates from templatecache",
+  "main": "lib/index.js",
+  "dependencies": {
+    "bluebird": "^3.3.5",
+    "esprima": "^2.7.2",
+    "esquery": "^0.4.0"
+  },
+  "devDependencies": {
+    "ava": "^0.14.0",
+    "babel-cli": "^6.7.7",
+    "babel-plugin-add-module-exports": "^0.1.3",
+    "babel-preset-es2015": "^6.6.0",
+    "babel-register": "^6.7.2",
+    "eslint": "^2.8.0",
+    "eslint-config-defaults": "^9.0.0",
+    "jscs": "^3.0.3"
+  },
+  "scripts": {
+    "prepublish": "./node_modules/.bin/babel src -d lib",
+    "test": "./node_modules/.bin/eslint src/*js tests/*.js && ./node_modules/.bin/ava && ./node_modules/.bin/jscs src/*.js tests/*.js"
+  },
+  "eslintConfig": {
+    "extends": "defaults",
+    "env": {
+      "node": true,
+      "es6": true,
+      "mocha": true
+    },
+    "globals": {
+      "angular": true
+    },
+    "parserOptions": {
+      "sourceType": "module"
+    },
+    "rules": {
+      "quotes": [
+        2,
+        "single",
+        "avoid-escape"
+      ]
+    }
+  },
+  "jscsConfig": {
+    "preset": "node-style-guide",
+    "requireTrailingComma": null,
+    "requireCapitalizedComments": null
+  },
+  "ava": {
+    "require": [
+      "babel-register"
+    ],
+    "failFast": true,
+    "verbose": true,
+    "babel": "inherit",
+    "files": [
+      "tests/*.tests.js"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/komachi/angular-templatecache-extract.git"
+  },
+  "keywords": [
+    "angular",
+    "template",
+    "dom",
+    "html"
+  ],
+  "author": "Anton Nesterov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/komachi/angular-templatecache-extract/issues"
+  },
+  "homepage": "https://github.com/komachi/angular-templatecache-extract#readme"
+}
