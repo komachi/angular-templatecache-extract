@@ -1,6 +1,7 @@
 import esquery from 'esquery';
 import esprima from 'esprima';
 import Promise from 'bluebird';
+import staticEval from 'static-eval';
 
 export default js => {
   return new Promise(resolve => {
@@ -14,8 +15,8 @@ export default js => {
       '[callee.property.type="Identifier"]'
     );
     Promise.map(tree, elem => {
-      if (elem.arguments && elem.arguments[1] && elem.arguments[1].value) {
-        result.push(elem.arguments[1].value);
+      if (elem.arguments && elem.arguments[1]) {
+        result.push(staticEval(elem.arguments[1]));
       }
       return Promise.resolve();
     }).then(() => {

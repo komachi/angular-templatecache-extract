@@ -1,12 +1,13 @@
 {
   "name": "angular-templatecache-extract",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Extract angular's templates from templatecache",
   "main": "lib/index.js",
   "dependencies": {
     "bluebird": "^3.3.5",
     "esprima": "^2.7.2",
-    "esquery": "^0.4.0"
+    "esquery": "^0.4.0",
+    "static-eval": "^0.2.4"
   },
   "devDependencies": {
     "ava": "^0.14.0",
