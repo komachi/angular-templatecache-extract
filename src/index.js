@@ -16,7 +16,10 @@ export default js => {
     );
     Promise.map(tree, elem => {
       if (elem.arguments && elem.arguments[1]) {
-        result.push(staticEval(elem.arguments[1]));
+        let ev = staticEval(elem.arguments[1]);
+        if (ev) {
+          result.push(ev);
+        }
       }
       return Promise.resolve();
     }).then(() => {
