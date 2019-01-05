@@ -1,22 +1,22 @@
 import esquery from 'esquery';
-import esprima from 'esprima';
+import espree from 'espree';
 import Promise from 'bluebird';
 import staticEval from 'static-eval';
 
-export default js => {
-  return new Promise(resolve => {
-    let result = [];
-    let content = esprima.parse(js);
-    let tree = esquery(
+function angularTemplatecacheExtract(js) {
+  return new Promise((resolve) => {
+    const result = [];
+    const content = espree.parse(js);
+    const tree = esquery(
       content,
-      'CallExpression[callee.object.name="$templateCache"]' +
-      '[callee.object.type="Identifier"]' +
-      '[callee.property.name="put"]' +
-      '[callee.property.type="Identifier"]'
+      'CallExpression[callee.object.name="$templateCache"]'
+      + '[callee.object.type="Identifier"]'
+      + '[callee.property.name="put"]'
+      + '[callee.property.type="Identifier"]',
     );
-    Promise.map(tree, elem => {
+    Promise.map(tree, (elem) => {
       if (elem.arguments && elem.arguments[1]) {
-        let ev = staticEval(elem.arguments[1]);
+        const ev = staticEval(elem.arguments[1]);
         if (ev) {
           result.push(ev);
         }
@@ -27,3 +27,5 @@ export default js => {
     });
   });
 }
+
+export default angularTemplatecacheExtract;

@@ -13,14 +13,14 @@ This package is avalable from npm
 ```js
 // your angular code
 var myApp = angular.module('myApp', []);
-myApp.run(function($templateCache) {
+myApp.run(function ($templateCache) {
   $templateCache.put('template1.html', '<div>Test1</div>');
   $templateCache.put('template2.html', '<div>Test2' + '</div>');
 });
 ```
 
 ```js
-import angularTemplatecacheExtract from '../src/index.js';
+import angularTemplatecacheExtract from 'angular-templatecache-extract';
 import fs from 'fs';
 
 fs.readFile(`${__dirname}/angularapp.js`, file => {
